@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Me</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #1E293B;
+      color: #ffffff;
+    }
+
+    section#about {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2.8rem;
+      margin-bottom: 30px;
+      color: #38bdf8;
+    }
+
+    .about-content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-text {
+      flex: 1;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      text-align: left;
+      min-width: 280px;
+    }
+
+    .about-text b {
+      color: #facc15;
+    }
+
+    .about-image {
+      flex: 1;
+      text-align: center;
+      min-width: 250px;
+    }
+
+    .about-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .about-content {
+        flex-direction: column;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+
+      .about-text {
+        font-size: 1rem;
+      }
+    }
+
+    .right {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      padding: 15px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    .right a img {
+      margin: 8px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    .right a img:hover {
+      transform: scale(1.4) rotate(10deg);
+      box-shadow: 0px 0px 20px #ffffff;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.9);}
+      100% { opacity: 1; transform: scale(1);}
+    }
+
+    @keyframes slideUp {
+      0% { transform: translateY(50px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+    .social-media {
+      text-align: center;
+      margin: 40px 0;
+    }
+
+    .social-media h1 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      color: #38bdf8;
+    }
+
+    .social-media p {
+      color: white;
+      margin-bottom: 15px;
+    }
+
+    .social-media a img {
+      height: 3.5rem;
+      margin: 0 10px;
+      border-radius: 50%;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .social-media a img:hover {
+      transform: scale(1.2) rotate(5deg);
+      box-shadow: 0px 0px 12px #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p>
+          Hello! I'm <b>Gautam Pal</b>, a passionate Full Stack Web Developer. I have strong skills in 
+          <b>HTML, CSS, JavaScript</b> for frontend development and <b>PHP, MySQL</b> for backend.
+          <br><br>
+          I love creating clean, beautiful, and user-friendly websites. I am hardworking, a fast learner, 
+          and always excited to take on new challenges. Right now, I am working on building my portfolio 
+          and learning advanced web technologies.
+        </p>
+      </div>
+      <div class="about-image">
+        <img src="wb de a.jpg" alt="Gautam Pal" />
+      </div>
+    </div>
+  </section>
+
+  <div class="social-media">
+    <h1>Follow Me on Social Media</h1>
+    <p>Connect with me</p>
+    <a href="https://www.linkedin.com/in/gautam-pal-bb9195247/" target="_blank">
+      <img src="linkedin.png" alt="LinkedIn">
+    </a>
+    <a href="https://x.com/Gautampal277220?t=nFvNcuLhZaGVA3o-OM2nxw&s=09" target="_blank">
+      <img src="x.png" alt="Twitter/X">
+    </a>
+  </div>
+</body>
+</html>
