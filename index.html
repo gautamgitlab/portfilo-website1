@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gautam Pal Portfolio</title>
+<link rel="stylesheet" href="cookies.js">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0F172A;
+      color: white;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      height: 97px;
+      background-color: #1E293B;
+    }
+
+    nav ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin: 0 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: #00b4db;
+    }
+
+    .left {
+      font-size: 2rem;
+      font-weight: 600;
+    }
+
+    .firstsection {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin: 40px 0;
+      flex-wrap: wrap;
+    }
+
+    .firstsection div {
+      width: 40%;
+      text-align: center;
+    }
+
+    .leftsection img {
+      width: 5.5em;
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+
+    .leftsection p {
+      color: #cbd5e1;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .rightsection img {
+      width: 100%;
+      max-width: 400px;
+    }
+
+    /* Certificate Section */
+    .certificate-section {
+      margin: 50px 0;
+    }
+    .certificate-section h1  {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .certificates {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 50px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+    .certificate {
+      text-align: center;
+    }
+    .certificate img {
+      border: 2px solid white;
+      border-radius: 10px;
+      width: 400px;
+      height: 250px;
+      transition: transform 0.3s;
+    }
+    .certificate img:hover {
+      transform: scale(1.05);
+    }
+    .certificate h2 {
+      margin-top: 15px;
+    }
+    .certificate a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #4CaF50;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+    .certificate a:hover {
+      background-color: #45a049;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <header>
+    <nav>
+      
+        </div>
+      </div>
+      <div class="left">Gautam Pal Portfolio</div>
+      <div class="right">
+        <ul>
+          <li><a href="1.html">Home</a></li>
+          <li><a href="#projects">Project</a></li>
+          <li><a href="Resume_Design3_Cream_Coral.pdf" target="_blank">CV</a></li>
+          <li><a href="contact.html">Contact Me</a></li>
+          <li><a href="about.html">About me</a></li>
+          <li><a href="badges.html">badges</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="firstsection">
+      <div class="leftsection">
+        <img src="my.jpg" alt="Gautam Pal">
+        <p>Hi, my name is Gautam Pal. I learn and work as a full stack web developer. I have good knowledge of HTML, CSS, and also learn the JavaScript for the FrontNnd development. At the hill I work with PHP and database like MySQL. <br> <br> I like to create a website and learn how both the front and the backnd on a website work together. I also use Git to manage my code. Right now I create my own portfolio site to show the projects made by me. <br> <br> I am a hard -working and fast student, and I want to develop as a developer by working on more real projects in the future.</p>
+      </div>
+    </section>
+    <section class="certificate-section">
+      <h1 id="certificate">Certificates</h1>
+    
+      <div class="certificates">
+    
+        <!-- CSS Certificate -->
+        <div class="certificate"> 
+          <img src="css certificate.jpg" alt="CSS Certificate">
+          <h2>Hackerrank CSS</h2>
+          <a href="css certificate.pdf" download>Download CSS Certificate</a>
+        </div>
+    
+        <!-- Python Certificate -->
+        <div class="certificate">
+          <img src="python.jpg" alt="Python Certificate">
+          <h2>Hackerrank Python</h2>
+          <a href="python_certificate.pdf" download>Download Python Certificate</a>
+        </div>
+    
+        <!-- SQL Basic Certificate -->
+        <div class="certificate">
+          <img src="sql_basic certificate.jpg" alt="SQL Basic Certificate">
+          <h2>Hackerrank SQL Basic</h2>
+          <a href="sql_basic certificate.pdf" download>Download SQL Basic Certificate</a>
+        </div>
+    
+        <!-- SQL Intermediate Certificate -->
+        <div class="certificate">
+          <img src="sql_intermediate certificate.jpg" alt="SQL Intermediate Certificate">
+          <h2>Hackerrank SQL Intermediate</h2>
+          <a href="sql_intermediate certificate.pdf" download>Download SQL Intermediate Certificate</a>
+        </div>
+    
+        <!-- PHP Certificate -->
+        <div class="certificate">
+          <img src="php.jpg" alt="PHP Certificate">
+          <h2>PHP Certificate</h2>
+          <a href="Gautam Pal CSRIT CERTIFICATE COURSE COMPLETION.pdf" download>Download PHP Certificate</a>
+        </div>
+    
+        <!-- Cisco Automation Certificate -->
+        <div class="certificate">
+          <img src="cisco automation.jpg" alt="Cisco Automation Certificate">
+          <h2>Cisco Automation Certificate</h2>
+          <a href="cisco automation.pdf" download>Download Cisco Automation Certificate</a>
+        </div>
+        <div class="certificate">
+          <img src="ccn.jpg" alt="automation">
+          <h2>cisco automation certifiacte</h2>
+          <a href="ccn.pdf" download>Download</a>
+        </div>
+        <div class="certificate">
+          <img src="pw skill_page-0001.jpg" alt=" Cloud devops aws ">
+          <h2>Cloud devops  </h2>
+          <a href="pw skill.pdf" download> Pw skill certificate</a>
+
+        </div>
+    
+      </div> <!-- End of .certificates -->
+    </section>
+    
+    </section>
+
+
+  </main>
+  <footer style="background:#1E293B; padding: 20px; text-align:center;">
+    <p>© 2025 Gautam Pal. All rights reserved.</p>
+    <p>
+      <a href="https://github.com" style="color:#38bdf8;">GitHub</a> |
+      <a href="https://www.linkedin.com/in/gautam-pal-bb9195247/" style="color:#38bdf8;">LinkedIn</a>
+    </p>
+  </footer>
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  </head>
+  <body>
+
+  </body>
+  </html>
+
+</body>
+</html>
