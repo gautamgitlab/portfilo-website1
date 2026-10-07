@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact Form</title>
+
+  <style>
+    /* Base Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      background: linear-gradient(135deg, #00b4db, #0083b0);
+      padding: 20px;
+      overflow-x: hidden;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    /* Glassmorphism Form */
+    form {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 40px;
+      width: 100%;
+      max-width: 400px;
+      animation: slideUp 1s ease forwards;
+      opacity: 0;
+    }
+
+    form h2 {
+      text-align: center;
+      color: #fff;
+      margin-bottom: 20px;
+      font-weight: 600;
+      font-size: 28px;
+    }
+
+    label {
+      color: #fff;
+      font-weight: 500;
+      margin-top: 10px;
+      display: block;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin-top: 8px;
+      margin-bottom: 18px;
+      border: none;
+      border-radius: 10px;
+      outline: none;
+      background: rgba(255, 255, 255, 0.7);
+      transition: 0.3s;
+    }
+
+    input:focus {
+      background: #fff;
+      border: 2px solid #00b4db;
+    }
+
+    .btn-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    button[type="reset"] {
+      background-color: #ff4e50;
+      color: #fff;
+    }
+
+    button[type="reset"]:hover {
+      background-color: #e53935;
+      transform: scale(1.05);
+    }
+
+    button[type="submit"] {
+      background-color: #00b4db;
+      color: #fff;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0083b0;
+      transform: scale(1.05);
+    }
+
+    /* Social Media Floating Box */
+    .right {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      padding: 15px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    .right a img {
+      margin: 8px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      transition: 0.3s;
+    }
+
+    .right a img:hover {
+      transform: scale(1.4) rotate(10deg);
+      box-shadow: 0px 0px 20px #ffffff;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.9);}
+      100% { opacity: 1; transform: scale(1);}
+    }
+
+    @keyframes slideUp {
+      0% { transform: translateY(50px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <form id="myForm">
+    <h2>Contact Me</h2>
+
+    <label for="name">Name</label>
+    <input type="text" id="name" name="Name" required>
+
+    <label for="mobile">Mobile Number</label>
+    <input type="tel" id="mobile" name="mobile" maxlength="10" minlength="10" placeholder="Enter valid number" required>
+
+    <label for="email">Gmail</label>
+    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+    <label for="message">Message</label>
+    <input type="text" id="message" name="message" maxlength="500" placeholder="Max 500 characters">
+
+    <div class="btn-group">
+      <button type="reset">Reset</button>
+      <button type="submit">Submit</button>
+    </div>
+  </form>
+
+  <div class="right">
+    <p style="color:white; margin-bottom: 10px;">Connect with me</p>
+    <a href="https://www.linkedin.com/in/gautam-pal-bb9195247/" target="_blank">
+      <img src="linkedin.png" alt="LinkedIn">
+    </a>
+    <a href="https://x.com/Gautampal277220?t=nFvNcuLhZaGVA3o-OM2nxw&s=09" target="_blank">
+      <img src="x.png" alt="Twitter/X">
+    </a>
+  </div>
+  
+
+  <script>
+    document.getElementById('myForm').addEventListener('submit', function(e) {
+      e.preventDefault(); 
+      alert('Thank you for contacting! I will reach out soon!');
+      alert("sure sumbit this form  ");
+      alert("are sure fill wright content other wise report immedite for cyber crime  ")
+    });
+  </script>
+
+</body>
+</html>
