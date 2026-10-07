@@ -56,7 +56,7 @@
       display: block;
     }
 
-    input {
+    input, textarea {
       width: 100%;
       padding: 12px;
       margin-top: 8px;
@@ -66,9 +66,10 @@
       outline: none;
       background: rgba(255, 255, 255, 0.7);
       transition: 0.3s;
+      resize: vertical;
     }
 
-    input:focus {
+    input:focus, textarea:focus {
       background: #fff;
       border: 2px solid #00b4db;
     }
@@ -146,13 +147,13 @@
       0% { transform: translateY(50px); opacity: 0; }
       100% { transform: translateY(0); opacity: 1; }
     }
-
   </style>
 </head>
 
 <body>
 
-  <form id="myForm">
+  <!-- Added id="myForm" and updated the action URL format -->
+  <form id="myForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
     <h2>Contact Me</h2>
 
     <label for="name">Name</label>
@@ -165,7 +166,7 @@
     <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
     <label for="message">Message</label>
-    <input type="text" id="message" name="message" maxlength="500" placeholder="Max 500 characters">
+    <textarea id="message" name="message" maxlength="500" rows="4" placeholder="Max 500 characters"></textarea>
 
     <div class="btn-group">
       <button type="reset">Reset</button>
@@ -182,14 +183,13 @@
       <img src="x.png" alt="Twitter/X">
     </a>
   </div>
-  
 
   <script>
     document.getElementById('myForm').addEventListener('submit', function(e) {
-      e.preventDefault(); 
-      alert('Thank you for contacting! I will reach out soon!');
-      alert("sure sumbit this form  ");
-      alert("are sure fill wright content other wise report immedite for cyber crime  ")
+      // Optional: If you want to keep the alert warning before sending
+      if (!confirm("Are you sure you want to submit this form with correct details?")) {
+        e.preventDefault(); // Stop submission if user clicks cancel
+      }
     });
   </script>
 
