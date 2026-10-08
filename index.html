@@ -3,251 +3,672 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gautam Pal Portfolio</title>
-<link rel="stylesheet" href="cookies.js">
-  <!-- Google Fonts -->
+  <title>Gautam Pal | Full Stack Web Developer</title>
+  <meta name="description" content="Portfolio of Gautam Pal, a full stack web developer working with HTML, CSS, JavaScript, PHP and MySQL.">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    :root {
+      --ink: #080D1C;
+      --surface: #111933;
+      --surface-2: #17214a;
+      --line: #25305c;
+      --text: #E9EDFB;
+      --muted: #9AA5CE;
+      --ice: #67E8F9;
+      --violet: #8B7CFF;
+      --radius: 18px;
+      --head: 'Sora', system-ui, sans-serif;
+      --body: 'DM Sans', system-ui, sans-serif;
     }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 
     body {
-      background-color: #0F172A;
-      color: white;
-      font-family: 'Poppins', sans-serif;
+      background: var(--ink);
+      color: var(--text);
+      font-family: var(--body);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
+    /* soft background glow */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(700px 500px at 85% -5%, rgba(139,124,255,.22), transparent 60%),
+        radial-gradient(600px 450px at -5% 35%, rgba(103,232,249,.12), transparent 60%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid var(--ice); outline-offset: 3px; border-radius: 6px; }
+
+    .wrap { width: min(1120px, 92%); margin: 0 auto; }
+
+    /* ---------- NAV ---------- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(8,13,28,.78);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
     nav {
       display: flex;
-      justify-content: space-around;
       align-items: center;
-      height: 97px;
-      background-color: #1E293B;
+      justify-content: space-between;
+      height: 76px;
     }
-
-    nav ul {
-      display: flex;
-      justify-content: center;
-      list-style: none;
-    }
-
-    nav ul li {
-      margin: 0 20px;
-    }
-
-    nav ul li a {
+    .logo {
+      font-family: var(--head);
+      font-weight: 700;
+      font-size: 1.2rem;
       text-decoration: none;
-      color: white;
+      letter-spacing: -.01em;
+    }
+    .logo span { color: var(--ice); }
+
+    nav ul { display: flex; gap: 6px; list-style: none; }
+    nav ul a {
+      display: block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      text-decoration: none;
       font-weight: 500;
-      transition: 0.3s;
+      font-size: .95rem;
+      color: var(--muted);
+      transition: color .2s, background .2s;
+    }
+    nav ul a:hover { color: var(--text); background: var(--surface); }
+    nav ul a.cta { background: var(--ice); color: #04222a; font-weight: 700; }
+    nav ul a.cta:hover { background: #9af0fb; color: #04222a; }
+
+    .menu-btn {
+      display: none;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--text);
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      font-size: 1.3rem;
+      cursor: pointer;
     }
 
-    nav ul li a:hover {
-      color: #00b4db;
-    }
-
-    .left {
-      font-size: 2rem;
-      font-weight: 600;
-    }
-
-    .firstsection {
-      display: flex;
-      justify-content: space-around;
+    /* ---------- HERO ---------- */
+    .hero { padding: 90px 0 70px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 60px;
       align-items: center;
-      margin: 40px 0;
-      flex-wrap: wrap;
     }
-
-    .firstsection div {
-      width: 40%;
-      text-align: center;
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      border-radius: 999px;
+      font-size: .9rem;
+      color: var(--muted);
+      margin-bottom: 26px;
     }
-
-    .leftsection img {
-      width: 5.5em;
+    .status i {
+      width: 9px; height: 9px;
       border-radius: 50%;
+      background: #4ade80;
+      box-shadow: 0 0 0 4px rgba(74,222,128,.2);
+    }
+    h1 {
+      font-family: var(--head);
+      font-weight: 800;
+      font-size: clamp(2.6rem, 6.4vw, 5rem);
+      line-height: 1.02;
+      letter-spacing: -.035em;
+      margin-bottom: 22px;
+    }
+    h1 .grad {
+      background: linear-gradient(95deg, var(--ice), var(--violet));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .role {
+      font-family: var(--head);
+      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+      font-weight: 500;
       margin-bottom: 20px;
+      color: var(--text);
     }
-
-    .leftsection p {
-      color: #cbd5e1;
-      font-size: 16px;
-      line-height: 1.6;
-    }
-
-    .rightsection img {
-      width: 100%;
-      max-width: 400px;
-    }
-
-    /* Certificate Section */
-    .certificate-section {
-      margin: 50px 0;
-    }
-    .certificate-section h1  {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    .certificates {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      gap: 50px;
-      flex-wrap: wrap;
-      margin-top: 30px;
-    }
-    .certificate {
-      text-align: center;
-    }
-    .certificate img {
-      border: 2px solid white;
-      border-radius: 10px;
-      width: 400px;
-      height: 250px;
-      transition: transform 0.3s;
-    }
-    .certificate img:hover {
-      transform: scale(1.05);
-    }
-    .certificate h2 {
-      margin-top: 15px;
-    }
-    .certificate a {
+    .role b { color: var(--ice); font-weight: 600; }
+    .caret {
       display: inline-block;
-      margin-top: 10px;
-      padding: 10px 20px;
-      background-color: #4CaF50;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      transition: background-color 0.3s;
+      width: 3px; height: 1.1em;
+      background: var(--ice);
+      margin-left: 3px;
+      vertical-align: -.15em;
+      animation: blink 1s steps(2) infinite;
     }
-    .certificate a:hover {
-      background-color: #45a049;
+    @keyframes blink { 50% { opacity: 0; } }
+
+    .lead { color: var(--muted); max-width: 54ch; font-size: 1.08rem; margin-bottom: 34px; }
+
+    .btns { display: flex; flex-wrap: wrap; gap: 14px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 26px;
+      border-radius: 14px;
+      font-weight: 700;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: transform .2s, background .2s, border-color .2s;
+    }
+    .btn:hover { transform: translateY(-3px); }
+    .btn.primary { background: linear-gradient(95deg, var(--ice), #7fb4ff); color: #04222a; }
+    .btn.ghost { border-color: var(--line); background: var(--surface); color: var(--text); }
+    .btn.ghost:hover { border-color: var(--ice); }
+
+    /* portrait with rotating ring */
+    .portrait { display: grid; place-items: center; }
+    .ring {
+      position: relative;
+      width: min(340px, 78vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      padding: 8px;
+      background: conic-gradient(from 0deg, var(--ice), var(--violet), #ff8bd0, var(--ice));
+      animation: spin 9s linear infinite;
+    }
+    .ring::after {
+      content: "";
+      position: absolute;
+      inset: -22px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--ice), var(--violet), #ff8bd0, var(--ice));
+      filter: blur(40px);
+      opacity: .35;
+      z-index: -1;
+    }
+    .ring .inner {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      background: var(--ink);
+      animation: spin 9s linear infinite reverse;
+    }
+    .ring img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ---------- STACK STRIP ---------- */
+    .stack {
+      border-block: 1px solid var(--line);
+      background: rgba(17,25,51,.55);
+    }
+    .stack ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px 14px;
+      padding: 26px 0;
+    }
+    .stack li {
+      padding: 8px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      font-weight: 500;
+      font-size: .95rem;
+    }
+
+    /* ---------- SECTIONS ---------- */
+    section { padding: 100px 0 20px; }
+    .section-head { margin-bottom: 46px; max-width: 60ch; }
+    h2 {
+      font-family: var(--head);
+      font-weight: 700;
+      font-size: clamp(1.9rem, 4vw, 2.9rem);
+      letter-spacing: -.025em;
+      line-height: 1.1;
+      margin-bottom: 12px;
+    }
+    .section-head p { color: var(--muted); }
+
+    /* about */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 30px;
+    }
+    .panel h3 { font-family: var(--head); font-size: 1.15rem; margin-bottom: 10px; }
+    .panel p { color: var(--muted); }
+
+    /* projects */
+    .projects { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; }
+    .project {
+      background: linear-gradient(160deg, var(--surface-2), var(--surface));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: border-color .25s, transform .25s;
+    }
+    .project:hover { border-color: var(--ice); transform: translateY(-4px); }
+    .project h3 { font-family: var(--head); font-size: 1.3rem; margin-bottom: 10px; }
+    .project p { color: var(--muted); margin-bottom: 18px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tags span {
+      font-size: .82rem;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(103,232,249,.1);
+      color: var(--ice);
+    }
+    .project.add { border-style: dashed; background: transparent; display: grid; align-content: center; text-align: center; }
+
+    /* certificates */
+    .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 34px; }
+    .filters button {
+      font: inherit;
+      font-weight: 500;
+      padding: 9px 20px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .filters button:hover { color: var(--text); }
+    .filters button.active { background: var(--ice); border-color: var(--ice); color: #04222a; font-weight: 700; }
+
+    .certs { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 24px; }
+    .cert {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: border-color .25s, transform .25s;
+    }
+    .cert:hover { border-color: var(--violet); transform: translateY(-5px); }
+    .cert.hide { display: none; }
+    .cert button.thumb {
+      all: unset;
+      display: block;
+      cursor: zoom-in;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: #fff;
+    }
+    .cert button.thumb:focus-visible { outline: 3px solid var(--ice); outline-offset: -3px; }
+    .cert img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
+    .cert:hover img { transform: scale(1.05); }
+    .cert .body { padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+    .cert h3 { font-family: var(--head); font-size: 1.05rem; line-height: 1.3; }
+    .cert .by { color: var(--muted); font-size: .9rem; margin-top: -8px; }
+    .cert a.dl {
+      margin-top: auto;
+      align-self: flex-start;
+      padding: 9px 18px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: var(--surface-2);
+      text-decoration: none;
+      font-size: .92rem;
+      font-weight: 500;
+      transition: background .2s, border-color .2s, color .2s;
+    }
+    .cert a.dl:hover { background: var(--ice); border-color: var(--ice); color: #04222a; }
+
+    /* lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(4,7,16,.92);
+      display: none;
+      place-items: center;
+      z-index: 100;
+      padding: 24px;
+    }
+    .lightbox.open { display: grid; }
+    .lightbox img { max-width: min(1000px, 100%); max-height: 86vh; border-radius: 12px; }
+    .lightbox button {
+      position: absolute;
+      top: 18px; right: 18px;
+      width: 46px; height: 46px;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--text);
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+
+    /* contact */
+    .contact {
+      text-align: center;
+      background: linear-gradient(140deg, var(--surface-2), var(--surface));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 70px 24px;
+    }
+    .contact p { color: var(--muted); max-width: 48ch; margin: 0 auto 30px; }
+    .contact .btns { justify-content: center; }
+
+    /* footer */
+    footer { margin-top: 100px; border-top: 1px solid var(--line); padding: 34px 0; color: var(--muted); }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between; align-items: center; }
+    footer a { color: var(--ice); text-decoration: none; font-weight: 500; }
+    footer a:hover { text-decoration: underline; }
+    footer .links { display: flex; gap: 22px; }
+
+    /* one load-in moment: the hero */
+    .hero-grid > * { animation: rise .9s cubic-bezier(.2,.7,.2,1) both; }
+    .hero-grid > *:nth-child(2) { animation-delay: .15s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(28px); } }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 860px) {
+      .hero { padding-top: 56px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 50px; }
+      .portrait { order: -1; }
+      .about-grid { grid-template-columns: 1fr; }
+      .menu-btn { display: block; }
+      nav ul {
+        position: absolute;
+        top: 76px; left: 0; right: 0;
+        flex-direction: column;
+        padding: 16px 4%;
+        background: var(--ink);
+        border-bottom: 1px solid var(--line);
+        display: none;
+      }
+      nav ul.open { display: flex; }
+      nav ul a { padding: 12px 14px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
     }
   </style>
-
 </head>
 
 <body>
 
   <header>
-    <nav>
-      
-        </div>
-      </div>
-      <div class="left">Gautam Pal Portfolio</div>
-      <div class="right">
-        <ul>
-          <li><a href="1.html">Home</a></li>
-          <li><a href="#projects">Project</a></li>
-          <li><a href="Resume_Design3_Cream_Coral.pdf" target="_blank">CV</a></li>
-          <li><a href="contact.html">Contact Me</a></li>
-          <li><a href="about.html">About me</a></li>
-          <li><a href="badges.html">badges</a></li>
-        </ul>
-      </div>
+    <nav class="wrap" aria-label="Main">
+      <a href="1.html" class="logo">Gautam<span>.</span>Pal</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
+      <ul id="menu">
+        <li><a href="1.html">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certificate">Certificates</a></li>
+        <li><a href="Resume_Design3_Cream_Coral.pdf" target="_blank" rel="noopener">CV</a></li>
+        <li><a href="badges.html">Badges</a></li>
+        <li><a href="contact.html" class="cta">Contact me</a></li>
+      </ul>
     </nav>
   </header>
 
   <main>
 
-    <section class="firstsection">
-      <div class="leftsection">
-        <img src="my.jpg" alt="Gautam Pal">
-        <p>Hi, my name is Gautam Pal. I learn and work as a full stack web developer. I have good knowledge of HTML, CSS, and also learn the JavaScript for the FrontNnd development. At the hill I work with PHP and database like MySQL. <br> <br> I like to create a website and learn how both the front and the backnd on a website work together. I also use Git to manage my code. Right now I create my own portfolio site to show the projects made by me. <br> <br> I am a hard -working and fast student, and I want to develop as a developer by working on more real projects in the future.</p>
+    <!-- HERO -->
+    <section class="hero" style="padding-bottom:70px">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="status"><i></i> Open to internships and junior roles</div>
+          <h1>Hi, I'm <span class="grad">Gautam Pal.</span></h1>
+          <p class="role">I build <b id="typed">websites</b><span class="caret"></span></p>
+          <p class="lead">Full stack web developer in training. I work with HTML, CSS and JavaScript on the front end, and PHP with MySQL on the back end.</p>
+          <div class="btns">
+            <a href="#projects" class="btn primary">See my work</a>
+            <a href="Resume_Design3_Cream_Coral.pdf" target="_blank" rel="noopener" class="btn ghost">Open my CV</a>
+            <a href="contact.html" class="btn ghost">Contact me</a>
+          </div>
+        </div>
+        <div class="portrait">
+          <div class="ring"><div class="inner"><img src="my.jpg" alt="Portrait of Gautam Pal"></div></div>
+        </div>
       </div>
     </section>
-    <section class="certificate-section">
-      <h1 id="certificate">Certificates</h1>
-    
-      <div class="certificates">
-    
-        <!-- CSS Certificate -->
-        <div class="certificate"> 
-          <img src="css certificate.jpg" alt="CSS Certificate">
-          <h2>Hackerrank CSS</h2>
-          <a href="css certificate.pdf" download>Download CSS Certificate</a>
-        </div>
-    
-        <!-- Python Certificate -->
-        <div class="certificate">
-          <img src="python.jpg" alt="Python Certificate">
-          <h2>Hackerrank Python</h2>
-          <a href="python_certificate.pdf" download>Download Python Certificate</a>
-        </div>
-    
-        <!-- SQL Basic Certificate -->
-        <div class="certificate">
-          <img src="sql_basic certificate.jpg" alt="SQL Basic Certificate">
-          <h2>Hackerrank SQL Basic</h2>
-          <a href="sql_basic certificate.pdf" download>Download SQL Basic Certificate</a>
-        </div>
-    
-        <!-- SQL Intermediate Certificate -->
-        <div class="certificate">
-          <img src="sql_intermediate certificate.jpg" alt="SQL Intermediate Certificate">
-          <h2>Hackerrank SQL Intermediate</h2>
-          <a href="sql_intermediate certificate.pdf" download>Download SQL Intermediate Certificate</a>
-        </div>
-    
-        <!-- PHP Certificate -->
-        <div class="certificate">
-          <img src="php.jpg" alt="PHP Certificate">
-          <h2>PHP Certificate</h2>
-          <a href="Gautam Pal CSRIT CERTIFICATE COURSE COMPLETION.pdf" download>Download PHP Certificate</a>
-        </div>
-    
-        <!-- Cisco Automation Certificate -->
-        <div class="certificate">
-          <img src="cisco automation.jpg" alt="Cisco Automation Certificate">
-          <h2>Cisco Automation Certificate</h2>
-          <a href="cisco automation.pdf" download>Download Cisco Automation Certificate</a>
-        </div>
-        <div class="certificate">
-          <img src="ccn.jpg" alt="automation">
-          <h2>cisco automation certifiacte</h2>
-          <a href="ccn.pdf" download>Download</a>
-        </div>
-        <div class="certificate">
-          <img src="pw skill_page-0001.jpg" alt=" Cloud devops aws ">
-          <h2>Cloud devops  </h2>
-          <a href="pw skill.pdf" download> Pw skill certificate</a>
 
+    <!-- STACK -->
+    <div class="stack">
+      <ul class="wrap" aria-label="Tech stack">
+        <li>HTML</li><li>CSS</li><li>JavaScript</li><li>PHP</li><li>MySQL</li><li>Python</li><li>Git</li>
+      </ul>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>About me</h2>
+          <p>A student developer who likes seeing how the front and back of a website connect.</p>
         </div>
-    
-      </div> <!-- End of .certificates -->
-    </section>
-    
+        <div class="about-grid">
+          <div class="panel">
+            <h3>What I do</h3>
+            <p>I learn and work as a full stack web developer. I know HTML and CSS well, I'm learning JavaScript for front end work, and I use PHP and MySQL on the back end. I manage my code with Git.</p>
+          </div>
+          <div class="panel">
+            <h3>What I'm after</h3>
+            <p>I'm a hard-working, fast learner. I want to grow as a developer by building more real projects. Right now I'm building this portfolio to show what I've made.</p>
+          </div>
+        </div>
+      </div>
     </section>
 
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Projects</h2>
+          <p>Things I've built while learning.</p>
+        </div>
+        <div class="projects">
+          <article class="project">
+            <h3>Personal portfolio website</h3>
+            <p>The site you're on. It shows my certificates, CV and badges, and it's built by hand without a framework.</p>
+            <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
+          </article>
+
+          <!-- Copy this block to add more projects -->
+          <article class="project add">
+            <h3>More coming soon</h3>
+            <p>New projects will appear here as I finish them.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATES -->
+    <section id="certificate">
+      <div class="wrap">
+        <div class="section-head">
+          <h2>Certificates</h2>
+          <p>Select a certificate to enlarge it, or download the PDF.</p>
+        </div>
+
+        <div class="filters" role="group" aria-label="Filter certificates">
+          <button class="active" data-filter="all">All</button>
+          <button data-filter="hackerrank">HackerRank</button>
+          <button data-filter="cisco">Cisco</button>
+          <button data-filter="other">Other</button>
+        </div>
+
+        <div class="certs">
+
+          <article class="cert" data-cat="hackerrank">
+            <button class="thumb" aria-label="Enlarge HackerRank CSS certificate"><img src="css certificate.jpg" alt="HackerRank CSS certificate" loading="lazy"></button>
+            <div class="body">
+              <h3>CSS</h3><p class="by">HackerRank</p>
+              <a class="dl" href="css certificate.pdf" download>Download PDF</a>
+            </div>
+          </article>
+
+          <article class="cert" data-cat="hackerrank">
+            <button class="thumb" aria-label="Enlarge HackerRank Python certificate"><img src="python.jpg" alt="HackerRank Python certificate" loading="lazy"></button>
+            <div class="body">
+              <h3>Python</h3><p class="by">HackerRank</p>
+              <a class="dl" href="python_certificate.pdf" download>Download PDF</a>
+            </div>
+          </article>
+
+          <article class="cert" data-cat="hackerrank">
+            <button class="thumb" aria-label="Enlarge HackerRank SQL Basic certificate"><img src="sql_basic certificate.jpg" alt="HackerRank SQL Basic certificate" loading="lazy"></button>
+            <div class="body">
+              <h3>SQL (Basic)</h3><p class="by">HackerRank</p>
+              <a class="dl" href="sql_basic certificate.pdf" download>Download PDF</a>
+            </div>
+          </article>
+
+          <article class="cert" data-cat="hackerrank">
+            <button class="thumb" aria-label="Enlarge HackerRank SQL Intermediate certificate"><img src="sql_intermediate certificate.jpg" alt="HackerRank SQL Intermediate certificate" loading="lazy"></button>
+            <div class="body">
+              <h3>SQL (Intermediate)</h3><p class="by">HackerRank</p>
+              <a class="dl" href="sql_intermediate certificate.pdf" download>Download PDF</a>
+            </div>
+          </article>
+
+          <article class="cert" data-cat="other">
+            <button class="thumb" aria-label="Enlarge PHP certificate"><img src="php.jpg" alt="PHP course completion certificate" loading="lazy"></button>
+            <div class="body">
+              <h3>PHP</h3><p class="by">CSRIT course completion</p>
+              <a class="dl" href="Gautam Pal CSRIT CERTIFICATE COURSE COMPLETION.pdf" download>Download PDF</a>
+            </div>
+          </article>
+
+          <article class="cert" data-cat="cisco">
+            <button class="thumb" aria-label="Enlarge Cisco Automation certificate"><img src="cisco automation.jpg" alt="Cisco Automation certificate" loading="lazy"></button>
+            <div class="body">
+              <h3>Automation</h3><p class="by">Cisco</p>
+              <a class="dl" href="cisco automation.pdf" download>Download PDF</a>
+            </div>
+          </article>
+
+          <article class="cert" data-cat="cisco">
+            <button class="thumb" aria-label="Enlarge second Cisco certificate"><img src="ccn.jpg" alt="Cisco certificate" loading="lazy"></button>
+            <div class="body">
+              <h3>Cisco certificate</h3><p class="by">Cisco</p>
+              <a class="dl" href="ccn.pdf" download>Download PDF</a>
+            </div>
+          </article>
+
+          <article class="cert" data-cat="other">
+            <button class="thumb" aria-label="Enlarge Cloud DevOps certificate"><img src="pw skill_page-0001.jpg" alt="Cloud DevOps with AWS certificate" loading="lazy"></button>
+            <div class="body">
+              <h3>Cloud DevOps with AWS</h3><p class="by">PW Skills</p>
+              <a class="dl" href="pw skill.pdf" download>Download PDF</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="wrap">
+        <div class="contact">
+          <h2>Let's work together</h2>
+          <p>Have a project, an internship or a question? Send me a message.</p>
+          <div class="btns">
+            <a href="contact.html" class="btn primary">Contact me</a>
+            <a href="https://www.linkedin.com/in/gautam-pal-bb9195247/" target="_blank" rel="noopener" class="btn ghost">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
   </main>
-  <footer style="background:#1E293B; padding: 20px; text-align:center;">
-    <p>© 2025 Gautam Pal. All rights reserved.</p>
-    <p>
-      <a href="https://github.com" style="color:#38bdf8;">GitHub</a> |
-      <a href="https://www.linkedin.com/in/gautam-pal-bb9195247/" style="color:#38bdf8;">LinkedIn</a>
-    </p>
+
+  <footer>
+    <div class="wrap">
+      <p>© 2025 Gautam Pal. All rights reserved.</p>
+      <div class="links">
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/gautam-pal-bb9195247/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
   </footer>
-  <!DOCTYPE html>
-  <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-  </head>
-  <body>
 
-  </body>
-  </html>
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Certificate preview">
+    <button id="closeLb" aria-label="Close preview">✕</button>
+    <img id="lbImg" src="" alt="">
+  </div>
 
+  <script>
+    // Mobile menu
+    const menuBtn = document.getElementById('menuBtn');
+    const menu = document.getElementById('menu');
+    menuBtn.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', open);
+    });
+    menu.addEventListener('click', e => {
+      if (e.target.tagName === 'A') { menu.classList.remove('open'); menuBtn.setAttribute('aria-expanded', false); }
+    });
+
+    // Typing role line
+    const words = ['websites', 'PHP back ends', 'MySQL databases', 'clean interfaces'];
+    const el = document.getElementById('typed');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduce) {
+      let w = 0, c = words[0].length, deleting = true;
+      (function tick() {
+        const word = words[w];
+        el.textContent = word.slice(0, c);
+        let delay = deleting ? 45 : 85;
+        if (!deleting && c === word.length) { deleting = true; delay = 1600; }
+        else if (deleting && c === 0) { deleting = false; w = (w + 1) % words.length; delay = 350; }
+        else { c += deleting ? -1 : 1; }
+        setTimeout(tick, delay);
+      })();
+    }
+
+    // Certificate filters
+    const filterBtns = document.querySelectorAll('.filters button');
+    const certs = document.querySelectorAll('.cert');
+    filterBtns.forEach(btn => btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      certs.forEach(c => c.classList.toggle('hide', f !== 'all' && c.dataset.cat !== f));
+    }));
+
+    // Lightbox
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    document.querySelectorAll('.cert .thumb').forEach(t => t.addEventListener('click', () => {
+      const img = t.querySelector('img');
+      lbImg.src = img.src; lbImg.alt = img.alt;
+      lb.classList.add('open');
+      document.getElementById('closeLb').focus();
+    }));
+    const closeLb = () => lb.classList.remove('open');
+    document.getElementById('closeLb').addEventListener('click', closeLb);
+    lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+  </script>
 </body>
 </html>
