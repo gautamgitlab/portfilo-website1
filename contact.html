@@ -1,197 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Contact Form</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Contact Me</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg1:#e6f4fb; --bg2:#d9e8ff; --blob1:#38bdf8; --blob2:#a78bfa; --blob3:#34d399;
+  --card:rgba(255,255,255,.62); --card-border:rgba(255,255,255,.85);
+  --text:#0f2538; --muted:#4b6378; --field:rgba(255,255,255,.85); --field-border:#c7d8e6;
+  --accent:#0284c7; --accent2:#6366f1; --danger:#e11d48; --ok:#059669;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg1:#0a1623; --bg2:#101a33; --blob1:#0ea5e9; --blob2:#7c3aed; --blob3:#10b981;
+    --card:rgba(18,30,48,.62); --card-border:rgba(255,255,255,.12);
+    --text:#eaf3fb; --muted:#9db3c6; --field:rgba(255,255,255,.07); --field-border:rgba(255,255,255,.16);
+    --accent:#38bdf8; --accent2:#818cf8; --danger:#fb7185; --ok:#34d399;
+  }
+}
+:root[data-theme="dark"]{
+  --bg1:#0a1623; --bg2:#101a33; --blob1:#0ea5e9; --blob2:#7c3aed; --blob3:#10b981;
+  --card:rgba(18,30,48,.62); --card-border:rgba(255,255,255,.12);
+  --text:#eaf3fb; --muted:#9db3c6; --field:rgba(255,255,255,.07); --field-border:rgba(255,255,255,.16);
+  --accent:#38bdf8; --accent2:#818cf8; --danger:#fb7185; --ok:#34d399;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{
+  min-height:100vh; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:22px;
+  padding:28px 18px; font-family:'Inter',system-ui,sans-serif; color:var(--text);
+  background:linear-gradient(135deg,var(--bg1),var(--bg2)); position:relative; overflow-x:hidden;
+}
+.blob{position:fixed;border-radius:50%;filter:blur(70px);opacity:.55;z-index:0;pointer-events:none;animation:drift 18s ease-in-out infinite alternate}
+.b1{width:340px;height:340px;background:var(--blob1);top:-90px;left:-80px}
+.b2{width:380px;height:380px;background:var(--blob2);bottom:-120px;right:-100px;animation-delay:-6s}
+.b3{width:240px;height:240px;background:var(--blob3);top:45%;left:60%;opacity:.35;animation-delay:-11s}
+@keyframes drift{to{transform:translate(40px,30px) scale(1.12)}}
 
-  <style>
-    /* Base Reset */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: 'Poppins', sans-serif;
-    }
+.card{
+  position:relative; z-index:1; width:100%; max-width:440px; padding:38px 34px 32px;
+  background:var(--card); border:1px solid var(--card-border); border-radius:26px;
+  backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
+  box-shadow:0 20px 60px -15px rgba(15,37,56,.35);
+  animation:rise .8s cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+.head{text-align:center;margin-bottom:26px}
+.head h1{font-family:'Sora',sans-serif;font-size:30px;font-weight:700;letter-spacing:-.02em;
+  background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.head p{color:var(--muted);font-size:14.5px;margin-top:6px}
 
-    body {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      background: linear-gradient(135deg, #00b4db, #0083b0);
-      padding: 20px;
-      overflow-x: hidden;
-      animation: fadeIn 1s ease forwards;
-    }
+.field{position:relative;margin-bottom:16px}
+.field label{display:block;font-size:13px;font-weight:500;color:var(--muted);margin-bottom:6px}
+.field svg.ic{position:absolute;left:14px;top:38px;width:18px;height:18px;stroke:var(--muted);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+.field.ta svg.ic{top:38px}
+input,textarea{
+  width:100%; padding:13px 14px 13px 42px; font:inherit; font-size:15px; color:var(--text);
+  background:var(--field); border:1.5px solid var(--field-border); border-radius:13px; outline:none;
+  transition:border-color .2s, box-shadow .2s, background .2s;
+}
+textarea{resize:vertical;min-height:110px;line-height:1.5}
+input::placeholder,textarea::placeholder{color:var(--muted);opacity:.7}
+input:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 22%,transparent)}
+.field.touched input:invalid{border-color:var(--danger)}
+.hint{font-size:12px;color:var(--muted);text-align:right;margin-top:4px}
+.err{display:none;font-size:12px;color:var(--danger);margin-top:4px}
+.field.touched input:invalid ~ .err{display:block}
 
-    /* Glassmorphism Form */
-    form {
-      background: rgba(255, 255, 255, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border-radius: 20px;
-      padding: 40px;
-      width: 100%;
-      max-width: 400px;
-      animation: slideUp 1s ease forwards;
-      opacity: 0;
-    }
+.actions{display:flex;gap:12px;margin-top:22px}
+button{font:inherit;font-weight:600;font-size:15px;border:none;border-radius:13px;cursor:pointer;padding:14px 18px;transition:transform .2s, box-shadow .2s, background .2s}
+button:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.reset{flex:0 0 auto;background:transparent;color:var(--muted);border:1.5px solid var(--field-border)}
+.reset:hover{color:var(--danger);border-color:var(--danger)}
+.submit{flex:1;color:#fff;background:linear-gradient(90deg,#0284c7,#6366f1);box-shadow:0 10px 24px -8px rgba(2,132,199,.6)}
+.submit:hover{transform:translateY(-2px);box-shadow:0 14px 28px -8px rgba(99,102,241,.65)}
+.submit:active{transform:translateY(0)}
 
-    form h2 {
-      text-align: center;
-      color: #fff;
-      margin-bottom: 20px;
-      font-weight: 600;
-      font-size: 28px;
-    }
+.toast{display:none;margin-top:18px;padding:13px 15px;border-radius:13px;font-size:14px;
+  background:color-mix(in srgb,var(--ok) 15%,transparent);border:1px solid var(--ok);color:var(--text)}
+.toast.show{display:block;animation:rise .4s ease both}
 
-    label {
-      color: #fff;
-      font-weight: 500;
-      margin-top: 10px;
-      display: block;
-    }
+.social{position:relative;z-index:1;display:flex;align-items:center;gap:14px;padding:10px 18px;border-radius:999px;
+  background:var(--card);border:1px solid var(--card-border);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.social span{font-size:13px;color:var(--muted)}
+.social a{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;color:#fff;transition:transform .25s, box-shadow .25s}
+.social a.li{background:#0a66c2}.social a.x{background:#111}
+.social a:hover{transform:translateY(-3px) scale(1.1);box-shadow:0 8px 18px -4px rgba(0,0,0,.4)}
+.social svg{width:19px;height:19px;fill:currentColor}
 
-    input, textarea {
-      width: 100%;
-      padding: 12px;
-      margin-top: 8px;
-      margin-bottom: 18px;
-      border: none;
-      border-radius: 10px;
-      outline: none;
-      background: rgba(255, 255, 255, 0.7);
-      transition: 0.3s;
-      resize: vertical;
-    }
-
-    input:focus, textarea:focus {
-      background: #fff;
-      border: 2px solid #00b4db;
-    }
-
-    .btn-group {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
-    }
-
-    button {
-      padding: 12px 20px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 16px;
-      transition: all 0.3s ease;
-    }
-
-    button[type="reset"] {
-      background-color: #ff4e50;
-      color: #fff;
-    }
-
-    button[type="reset"]:hover {
-      background-color: #e53935;
-      transform: scale(1.05);
-    }
-
-    button[type="submit"] {
-      background-color: #00b4db;
-      color: #fff;
-    }
-
-    button[type="submit"]:hover {
-      background-color: #0083b0;
-      transform: scale(1.05);
-    }
-
-    /* Social Media Floating Box */
-    .right {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      padding: 15px;
-      border-radius: 15px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      text-align: center;
-      animation: fadeIn 2s ease forwards;
-    }
-
-    .right a img {
-      margin: 8px;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      transition: 0.3s;
-    }
-
-    .right a img:hover {
-      transform: scale(1.4) rotate(10deg);
-      box-shadow: 0px 0px 20px #ffffff;
-    }
-
-    /* Animations */
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: scale(0.9);}
-      100% { opacity: 1; transform: scale(1);}
-    }
-
-    @keyframes slideUp {
-      0% { transform: translateY(50px); opacity: 0; }
-      100% { transform: translateY(0); opacity: 1; }
-    }
-  </style>
+@media (max-width:420px){.card{padding:30px 22px 26px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
 </head>
-
 <body>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
 
-  <!-- Added id="myForm" and updated the action URL format -->
-  <form id="myForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-    <h2>Contact Me</h2>
-
-    <label for="name">Name</label>
-    <input type="text" id="name" name="Name" required>
-
-    <label for="mobile">Mobile Number</label>
-    <input type="tel" id="mobile" name="mobile" maxlength="10" minlength="10" placeholder="Enter valid number" required>
-
-    <label for="email">Gmail</label>
-    <input type="email" id="email" name="email" placeholder="Enter your email" required>
-
-    <label for="message">Message</label>
-    <textarea id="message" name="message" maxlength="500" rows="4" placeholder="Max 500 characters"></textarea>
-
-    <div class="btn-group">
-      <button type="reset">Reset</button>
-      <button type="submit">Submit</button>
-    </div>
-  </form>
-
-  <div class="right">
-    <p style="color:white; margin-bottom: 10px;">Connect with me</p>
-    <a href="https://www.linkedin.com/in/gautam-pal-bb9195247/" target="_blank">
-      <img src="linkedin.png" alt="LinkedIn">
-    </a>
-    <a href="https://x.com/Gautampal277220?t=nFvNcuLhZaGVA3o-OM2nxw&s=09" target="_blank">
-      <img src="x.png" alt="Twitter/X">
-    </a>
+<form class="card" id="myForm" novalidate>
+  <div class="head">
+    <h1>Contact Me</h1>
+    <p>Send a message and I'll reply soon.</p>
   </div>
 
-  <script>
-    document.getElementById('myForm').addEventListener('submit', function(e) {
-      // Optional: If you want to keep the alert warning before sending
-      if (!confirm("Are you sure you want to submit this form with correct details?")) {
-        e.preventDefault(); // Stop submission if user clicks cancel
-      }
-    });
-  </script>
+  <div class="field">
+    <label for="name">Name</label>
+    <svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+    <input type="text" id="name" name="name" placeholder="Your full name" autocomplete="name" required>
+    <div class="err">Enter your name.</div>
+  </div>
 
+  <div class="field">
+    <label for="mobile">Mobile number</label>
+    <svg class="ic" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>
+    <input type="tel" id="mobile" name="mobile" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" placeholder="10-digit number" autocomplete="tel" required>
+    <div class="err">Enter a 10-digit mobile number.</div>
+  </div>
+
+  <div class="field">
+    <label for="email">Email</label>
+    <svg class="ic" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+    <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+    <div class="err">Enter a valid email address.</div>
+  </div>
+
+  <div class="field ta">
+    <label for="message">Message</label>
+    <svg class="ic" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.5 7.2L3 21l1.8-6A8 8 0 1 1 21 12Z"/></svg>
+    <textarea id="message" name="message" maxlength="500" placeholder="How can I help?"></textarea>
+    <div class="hint"><span id="count">0</span>/500</div>
+  </div>
+
+  <div class="actions">
+    <button type="reset" class="reset">Reset</button>
+    <button type="submit" class="submit">Send message</button>
+  </div>
+  <div class="toast" id="toast" role="status">Thanks for reaching out! I'll get back to you soon.</div>
+</form>
+
+<div class="social">
+  <span>Connect with me</span>
+  <a class="li" href="https://www.linkedin.com/in/gautam-pal-bb9195247/" target="_blank" rel="noopener" aria-label="LinkedIn">
+    <svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11.5H3V9.75Zm6.5 0h3.8v1.6h.06c.53-1 1.84-2.06 3.8-2.06 4.06 0 4.8 2.67 4.8 6.15v5.8h-4v-5.15c0-1.23-.02-2.8-1.7-2.8-1.7 0-1.97 1.33-1.97 2.7v5.25h-4V9.75Z"/></svg>
+  </a>
+  <a class="x" href="https://x.com/Gautampal277220?t=nFvNcuLhZaGVA3o-OM2nxw&s=09" target="_blank" rel="noopener" aria-label="X (Twitter)">
+    <svg viewBox="0 0 24 24"><path d="M17.8 3h3.2l-7 8 8.2 10.8h-6.4l-5-6.5-5.7 6.5H1.9l7.5-8.6L1.5 3h6.6l4.5 6 5.2-6Zm-1.1 16.9h1.8L7.1 4.9H5.2l11.5 15Z"/></svg>
+  </a>
+</div>
+
+<script>
+const form=document.getElementById('myForm'),toast=document.getElementById('toast'),
+      msg=document.getElementById('message'),count=document.getElementById('count');
+msg.addEventListener('input',()=>count.textContent=msg.value.length);
+form.querySelectorAll('input').forEach(i=>{
+  i.addEventListener('blur',()=>i.parentElement.classList.add('touched'));
+});
+form.addEventListener('submit',e=>{
+  e.preventDefault();
+  form.querySelectorAll('.field').forEach(f=>f.classList.add('touched'));
+  if(!form.checkValidity()){form.querySelector(':invalid').focus();return;}
+  toast.classList.add('show');
+  form.reset();count.textContent='0';
+  form.querySelectorAll('.field').forEach(f=>f.classList.remove('touched'));
+  setTimeout(()=>toast.classList.remove('show'),6000);
+});
+form.addEventListener('reset',()=>{
+  count.textContent='0';toast.classList.remove('show');
+  form.querySelectorAll('.field').forEach(f=>f.classList.remove('touched'));
+});
+</script>
 </body>
 </html>
